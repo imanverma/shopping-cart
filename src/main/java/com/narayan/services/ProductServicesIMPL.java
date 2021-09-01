@@ -1,5 +1,6 @@
 package com.narayan.services;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -148,6 +149,14 @@ public class ProductServicesIMPL implements ProductServices{
 	public String deleteBook(int bookID) {
 		bookRepo.deleteById(bookID);
 		return "Book of ID: "+bookID+"  is deleted.";
+	}
+	
+	@Override
+	public Collection<Product> getProductsListByCartID(int cartID) {
+		
+		Collection<Product> productsByCartID = productRepo.getProductsByCartID(cartID);
+		
+		return productsByCartID;
 	}
 	
 }

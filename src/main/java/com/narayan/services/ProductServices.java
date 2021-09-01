@@ -1,5 +1,6 @@
 package com.narayan.services;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -25,6 +26,6 @@ public interface ProductServices {
 	public String deleteApparal(int apparalID);
 	public String deleteBook(int bookID);
 	
-
+	public Collection<Product> getProductsListByCartID(int cartID);
 
 }

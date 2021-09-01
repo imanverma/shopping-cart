@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -15,8 +17,12 @@ public abstract class Product {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int productId;
 	private String productName;
-	private float price;
+	private double price;
 	private String productType;
+	
+	@ManyToOne
+	@JoinColumn(name = "cart_id")
+	private Cart cart;
 	
 	public String getProductType() {
 		return productType;
@@ -36,19 +42,18 @@ public abstract class Product {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(float price) {
-		this.price = price;
+	public void setPrice(double d) {
+		this.price = d;
 	}
-	
 	public Product() {
 		super();
 	}
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", productName=" + productName + ", price=" + price
-				+ ", productType=" + productType + "]";
+				+ ", productType=" + productType + ", cart=" + cart + "]";
 	}
 }
