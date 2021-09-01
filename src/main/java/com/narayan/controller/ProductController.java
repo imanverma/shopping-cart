@@ -1,5 +1,6 @@
 package com.narayan.controller;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import com.narayan.services.ProductServices;
 public class ProductController {
 	
 	@Autowired
-	ProductServices productService;	
+	ProductServices productService;
 		
 	@GetMapping("all-products")
 	public ResponseEntity<List<Product>> getAllProducts(){
@@ -32,9 +33,17 @@ public class ProductController {
 	public ResponseEntity<Product> getProductByID(@PathVariable("pId") int productId){
 		
 		Product productById = productService.getProductByID(productId);
-		
 		return new ResponseEntity<Product>(productById, HttpStatus.OK);
-	}	
+	}
+	
+	@GetMapping("{cartID}")
+	public ResponseEntity<Collection<Product>> getProductsByCartID(@PathVariable("cartID") int cartID){
+		
+		Collection<Product> productsByCartID = productService.getProductsListByCartID(cartID);
+		
+		return new ResponseEntity<Collection<Product>>(productsByCartID, HttpStatus.OK);
+		
+	}
 }
 
 

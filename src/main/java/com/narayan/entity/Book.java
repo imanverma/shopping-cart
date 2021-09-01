@@ -36,6 +36,5 @@ public class Book extends Product {
 		return "Book [genre=" + genre + ", author=" + author + ", description=" + description + ", getProductType()="
 				+ getProductType() + ", getProductId()=" + getProductId() + ", getProductName()=" + getProductName()
 				+ ", getPrice()=" + getPrice() + "]";
-	}
-	
+	}	
 }
