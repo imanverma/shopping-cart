@@ -19,25 +19,15 @@ public class CartController {
 
 	@Autowired
 	CartServices cartService;
-		
+	
 	@GetMapping("{cartid}")
 	public ResponseEntity<Cart> getCartItemsByCartID(@PathVariable("cartid") int cartID) {
-		
 		Cart cartDetailsByID = cartService.getCartItemsByCartID(cartID);
-
 		return new ResponseEntity<Cart>(cartDetailsByID, HttpStatus.OK);
-	}
-	
+	}	
 	@PostMapping("add-items/{cartid}")
-	public ResponseEntity<Cart> addItemstoCart(@PathVariable("cartid") int cartid, @RequestBody Cart cart){
-		
-		System.out.println(cart+"------------controller--------------1st"+cartid);
-				
+	public ResponseEntity<Cart> addItemstoCart(@PathVariable("cartid") int cartid, @RequestBody Cart cart){		
 		Cart cartDetails = cartService.addItemsToCart(cartid, cart);
-		System.out.println(cartDetails+"------------controller--------------2nd");
-
 		return new ResponseEntity<Cart>(cartDetails, HttpStatus.OK);
-		
 	}
-	
 }
